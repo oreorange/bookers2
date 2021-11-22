@@ -27,17 +27,17 @@
         Users
       </li>
       <li>
-        Books
+        <%= link_to 'Books', books_path %>
       </li>
       <li>
         <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       </li>
     <% else %>
       <li>
-        <%= link_to "Home", new_user_registration_path %>
+        <%= link_to "sign up", new_user_registration_path %>
       </li>
       <li>
-        <%= link_to "About", new_user_session_path %>
+        <%= link_to "sign in", new_user_session_path %>
       </li>
       <li>
         Sign up

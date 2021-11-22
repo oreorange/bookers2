@@ -1,0 +1,42 @@
+<main>
+    
+  <h2>New book</h2>
+  <%= form_with model: @book, local:true do |f| %>
+  <div>
+    <%= f.label :Title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :Opinion%>
+    <%= f.text_area :body %>
+  </div>
+  <div>
+  <%= f.submit 'Create Book' %>
+  </div>
+  <% end %>
+  
+    <div>
+      <h2>Book detail</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Opinion</th>
+        <th colspan="2"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @book.user_id %></td>
+        <td><%= @book.title %></td>
+        <td><%= @book.body %></td>
+        <% if @book.user == current_user %>
+        <td><%= "編集" %></td>
+        <td><%= link_to "Destroy", book_path(@book),method: :destroy %></td>
+        <% end %>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  
+  </main>
