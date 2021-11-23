@@ -1,8 +1,10 @@
   <main>
   <h2>User info</h2>
+  <p><%= link_to "プロフ編集", edit_user_path(@user) %></p>
     
     <table>
      <tbody>
+      <tr><%= attachment_image_tag @user, :profile_image, format:'jpeg', fallback: "no_image.jpg", size: "100x100" %></tr>
       <tr>
         <td>name</td>
         <td><%= @user.name %></td>
