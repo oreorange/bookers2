@@ -1,7 +1,22 @@
-<main>
+　<h2>User info</h2>
+  <table>
+     <tbody>
+      <tr><%= attachment_image_tag @user, :profile_image, format:'jpeg', fallback: "no_image.jpg", size: "100x100" %></tr>
+      <tr>
+        <td>name</td>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <td>introduction</td>
+        <td><%= @user.introduction %></td>
+      </tr>
+     </tbody>
+    </table>
     
-  <h2>New book</h2>
-  <%= form_with model: @book, local:true do |f| %>
+  <p><%= link_to "プロフ編集", edit_user_path(@user) %></p>
+　
+　<h2>New book</h2>
+  <%= form_with model: @booknew, local:true do |f| %>
   <div>
     <%= f.label :Title %>
     <%= f.text_field :title %>
@@ -27,16 +42,16 @@
       </thead>
       <tbody>
       <tr>
-        <td><%= @book.user_id %></td>
+        <td>
+          <%= attachment_image_tag @book.user, :profile_image, format:'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+        </td>
         <td><%= @book.title %></td>
         <td><%= @book.body %></td>
         <% if @book.user == current_user %>
         <td><%= link_to "Edit", edit_book_path %></td>
-        <td><%= link_to "Destroy", book_path(@book),method: :destroy %></td>
+        <td><%= link_to "Destroy", book_path(@book),method: :delete, "data-confirm" => "本当に消しますか?" %> %></td>
         <% end %>
       </tr>
       </tbody>
     </table>
     </div>
-  
-  </main>

@@ -1,6 +1,4 @@
-  <main>
-  <h2>User info</h2>
-  <p><%= link_to "プロフ編集", edit_user_path(@user) %></p>
+　<h2>User info</h2>
     
     <table>
      <tbody>
@@ -15,6 +13,8 @@
       </tr>
      </tbody>
     </table>
+    
+  <p><%= link_to "プロフ編集", edit_user_path(@user) %></p>
     
     
   <h2>New book</h2>
@@ -41,7 +41,10 @@
       <% @books.each do |book| %>
       <tbody>
       <tr>
-        <td><%= book.user_id %></td>
+        <td>
+          <%= link_to "下にlink_to挿入？", user_path(@user) %>
+          <%= attachment_image_tag book.user, :profile_image, format:'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+        </td>
         <td>
           <%= link_to book_path(book.id) do %>
            <%= book.title %>
@@ -50,8 +53,6 @@
         <td><%= book.body %></td>
       </tr>
       </tbody>
+      <% end %>
     </table>
-  <% end %>
-  
-  </main>
-  
+    

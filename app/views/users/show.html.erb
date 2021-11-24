@@ -1,12 +1,21 @@
  <h2>User info</h2>
- <%= %>
+  <table>
+     <tbody>
+      <tr><%= attachment_image_tag @user, :profile_image, format:'jpeg', fallback: "no_image.jpg", size: "100x100" %></tr>
+      <tr>
+        <td>name</td>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <td>introduction</td>
+        <td><%= @user.introduction %></td>
+      </tr>
+     </tbody>
+    </table>
+    
+  <p><%= link_to "プロフ編集", edit_user_path(@user) %></p>
  
- <div>
-   <h3><%= @user.name %></h3>
-    <p><%= link_to "プロフ編集", edit_user_path(@user) %></p>
- </div>
- 
- <h2>New book</h2>
+  <h2>New book</h2>
   <%= form_with model: @book, local:true do |f| %>
   <div>
     <%= f.label :Title %>
@@ -21,6 +30,7 @@
   </div>
   <% end %>
   
+  <h2>Books</h2>
   <table>
       <thead>
       <tr>
@@ -30,7 +40,9 @@
       <% @books.each do |book| %>
       <tbody>
       <tr>
-        <td><%= book.user_id %></td>
+        <td>
+          <%= attachment_image_tag book.user, :profile_image, format:'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+        </td>
         <td>
           <%= link_to book_path(book.id) do %>
            <%= book.title %>
@@ -39,5 +51,6 @@
         <td><%= book.body %></td>
       </tr>
       </tbody>
-    </table>
-  <% end %>
+      <% end %>
+  </table>
+  
