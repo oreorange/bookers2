@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  
+
   def index
     @book = Book.new
     @books = Book.all
@@ -21,9 +21,9 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
-    @booknew = Book.new
-    @user = @book.user
+    @bookshow = Book.find(params[:id])
+    @book = Book.new
+    @user = @bookshow.user
   end
 
   def edit
@@ -43,7 +43,7 @@ class BooksController < ApplicationController
     else
       render :edit
     end
-    
+
   end
 
   def destroy

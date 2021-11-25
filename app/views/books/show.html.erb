@@ -1,30 +1,24 @@
 　<%= notice %>
-　<!--部分テンプレート-->
+
+
+  <div class="container">
+  <div class="row">
+    <div class="col-md-3">
+<!--部分テンプレート-->
 <%= render 'books/info', user: @user %>
 <!--部分テンプレート-->
-　
-　<h2>New book</h2>
-  <%= form_with model: @booknew, local:true do |f| %>
-  <div>
-    <%= f.label :Title %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :Opinion%>
-    <%= f.text_area :body %>
-  </div>
-  <div>
-  <%= f.submit 'Create Book' %>
-  </div>
-  <% end %>
-  
-    <div>
+
+<!--部分テンプレート-->
+<%= render 'books/newbook', book: @book %>
+<!--部分テンプレート-->
+    </div>
+    <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
-    <table>
+    <table class='table'>
       <tbody>
       <tr>
         <td>
-          <%= attachment_image_tag @book.user, :profile_image, format:'jpeg', fallback: "no_image.jpg", size: "50x50" %>
+          <%= attachment_image_tag @bookshow.user, :profile_image, format:'jpeg', fallback: "no_image.jpg", size: "50x50" %>
         </td>
         <td>
           <%= link_to user_path(@user.id) do %>
@@ -32,16 +26,18 @@
           <% end %>
         </td>
         <td>
-          <%= link_to book_path(@book.id) do %>
-          <%= @book.title %>
+          <%= link_to book_path(@bookshow.id) do %>
+          <%= @bookshow.title %>
           <% end %>
         </td>
-        <td><%= @book.body %></td>
-        <% if @book.user == current_user %>
-        <td><%= link_to "Edit", edit_book_path %></td>
-        <td><%= link_to "Destroy", book_path(@book),method: :delete, "data-confirm" => "本当に消しますか?" %> %></td>
+        <td><%= @bookshow.body %></td>
+        <% if @bookshow.user == current_user %>
+        <td><%= link_to "Edit", edit_book_path, class: "btn btn-sm btn-success" %></td>
+        <td><%= link_to "Destroy", book_path(@bookshow),method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-sm btn-danger" %></td>
         <% end %>
       </tr>
       </tbody>
     </table>
     </div>
+    </div>
+  </div>
