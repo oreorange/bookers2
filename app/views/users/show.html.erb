@@ -1,20 +1,13 @@
- <h2>User info</h2>
-  <table>
-     <tbody>
-      <tr><%= attachment_image_tag @user, :profile_image, format:'jpeg', fallback: "no_image.jpg", size: "100x100" %></tr>
-      <tr>
-        <td>name</td>
-        <td><%= @user.name %></td>
-      </tr>
-      <tr>
-        <td>introduction</td>
-        <td><%= @user.introduction %></td>
-      </tr>
-     </tbody>
-    </table>
-    
-  <p><%= link_to "プロフ編集", edit_user_path(@user) %></p>
- 
+ <%= notice %>
+ <% if @user.errors.any? %>
+  <%= @user.errors.count %>errors prohibited this user formbeing saved:
+  <% @user.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+ <!--部分テンプレート-->
+<%= render 'books/info', user: @user %>
+<!--部分テンプレート-->
   <h2>New book</h2>
   <%= form_with model: @book, local:true do |f| %>
   <div>
